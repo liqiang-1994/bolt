@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.white,
         //colorScheme: ColorScheme
       ),
-      home: Scaffold(
+      home: const Scaffold(
         body: SplashWidget(),
       ),
     );

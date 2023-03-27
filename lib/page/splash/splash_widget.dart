@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:bolt/constant/constants.dart';
 import 'package:bolt/page/container/container_widget.dart';
 import 'package:bolt/util/screen_util.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SplashWidget extends StatefulWidget {
+  const SplashWidget({super.key});
 
   @override
   State createState() => _SplashWidget();
@@ -34,7 +34,7 @@ class _SplashWidget extends State<SplashWidget> {
             child: Stack(
               children: [
                 Align(
-                  alignment: Alignment(0.0, 0.0),
+                  alignment: const Alignment(0.0, 0.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -58,7 +58,7 @@ class _SplashWidget extends State<SplashWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Align(
-                          alignment: Alignment(1.0, 0.0),
+                          alignment: const Alignment(1.0, 0.0),
                           child: Container(
                             margin: const EdgeInsets.only(right: 30.0, top: 20.0),
                             padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 2.0, bottom: 2.0),
@@ -123,14 +123,33 @@ class _CountDownWidgetState extends State<CountDownWidget> {
 
   @override
   Widget build(BuildContext context) {
+    return TextButton(
+        onPressed: () {
+          widget.whenCountDownFinishCall(true);
+          _cancelTimer();
+        },
+        child: Text(
+          '跳过 $_seconds',
+          style: const TextStyle(fontSize: 17.0),
+
+        ),
+      // style: ButtonStyle(
+      //   shape: MaterialStateProperty.all(
+      //     RoundedRectangleBorder(
+      //       borderRadius: BorderRadius.circular(50)
+      //     )
+      //   )
+      // ),
+    );
     return Text(
       '$_seconds',
       style: const TextStyle(fontSize: 17.0),
+
     );
   }
 
   void _startTimer() {
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {});
       if (_seconds <= 1) {
         widget.whenCountDownFinishCall(true);
