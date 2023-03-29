@@ -1,5 +1,5 @@
-import 'package:bolt/bean/recommend_entity.dart';
-import 'package:bolt/bean/subject_entity.dart';
+import 'package:bolt/model/recommend_entity.dart';
+import 'package:bolt/model/subject_entity.dart';
 import 'package:bolt/page/home/recommend_list_view.dart';
 import 'package:bolt/router.dart';
 import 'package:bolt/widget/search_text_field_widget.dart';
@@ -15,12 +15,12 @@ class HomePageWidget extends StatelessWidget {
   }
 }
 
-var _home_tabs = ['动态', '推荐'];
+const _homeTabs = ['动态', '推荐'];
 
 DefaultTabController getTabWeight() {
   return DefaultTabController(
       initialIndex: 1,
-      length: _home_tabs.length,
+      length: _homeTabs.length,
       child: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return [
@@ -48,7 +48,7 @@ DefaultTabController getTabWeight() {
                   ),
                 ),
                 bottom: TabBar(
-                  tabs: _home_tabs
+                  tabs: _homeTabs
                       .map((name) => Container(
                     padding: const EdgeInsets.only(bottom: 10.0),
                     child: Text(
@@ -71,7 +71,7 @@ DefaultTabController getTabWeight() {
           ];
         },
         body: TabBarView(
-          children: _home_tabs.map((name) {
+          children: _homeTabs.map((name) {
             return SliverContainer(
               name: name
             );
@@ -163,25 +163,6 @@ class _SliverContainerState extends State<SliverContainer> with TickerProviderSt
     recommendEntity: recommendList[index],
     animation: animation,
     animationController: animationController,);
-    // return ListView.builder(
-    //     itemCount: 1,
-    //     padding: const EdgeInsets.only(top: 8),
-    //     scrollDirection: Axis.vertical,
-    //     itemBuilder: (BuildContext context, int index) {
-    //       final count = 1;
-    //       final Animation<double> animation = Tween<double>(begin: 0.0, end: 1.0).animate(
-    //           CurvedAnimation(
-    //               parent: animationController!,
-    //               curve: Interval((1 / count) * index, 1.0, curve: Curves.fastOutSlowIn)));
-    //       animationController!.forward();
-    //       return RecommendListView(
-    //         callback: (){},
-    //         recommendEntity: recommendList[index],
-    //         animation: animation,
-    //         animationController: animationController,
-    //       );
-    //     }
-    // );
   }
 
   getItemCenterImg(Subject item) {

@@ -1,10 +1,8 @@
-
-import 'package:bolt/constant/constants.dart';
 import 'package:bolt/widget/search_text_field_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../bean/subject_entity.dart';
+import '../../model/subject_entity.dart';
 import '../../router.dart';
 
 class CirclePageWidget extends StatelessWidget {

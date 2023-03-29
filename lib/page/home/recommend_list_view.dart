@@ -1,4 +1,4 @@
-import 'package:bolt/bean/recommend_entity.dart';
+import 'package:bolt/model/recommend_entity.dart';
 import 'package:flutter/material.dart';
 
 class RecommendListView extends StatelessWidget {
