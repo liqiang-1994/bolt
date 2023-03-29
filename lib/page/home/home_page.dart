@@ -1,5 +1,6 @@
+import 'package:bolt/bean/recommend_entity.dart';
 import 'package:bolt/bean/subject_entity.dart';
-import 'package:bolt/constant/constants.dart';
+import 'package:bolt/page/home/recommend_list_view.dart';
 import 'package:bolt/router.dart';
 import 'package:bolt/widget/search_text_field_widget.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ DefaultTabController getTabWeight() {
               handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
               sliver: SliverAppBar(
                 pinned: true,
-                expandedHeight: 5.0,
+                expandedHeight: 25.0,
                 primary: true,
                 titleSpacing: 0,
                 backgroundColor: Colors.white,
@@ -82,19 +83,22 @@ DefaultTabController getTabWeight() {
 class SliverContainer extends StatefulWidget {
   final String name;
 
-  SliverContainer({Key? key, required this.name}) : super(key: key);
+  const SliverContainer({Key? key, required this.name}) : super(key: key);
 
   @override
   State createState() => _SliverContainerState();
 }
 
-class _SliverContainerState extends State<SliverContainer> {
+class _SliverContainerState extends State<SliverContainer> with TickerProviderStateMixin {
 
   List<Subject>? list;
+  AnimationController? animationController;
+  List<RecommendEntity> recommendList = RecommendEntity.recommendList;
 
   @override
   void initState() {
     super.initState();
+    animationController = AnimationController(duration: const Duration(milliseconds: 1000), vsync: this);
     if (list == null) {
       list = [Subject(1, true)];
 
@@ -106,7 +110,20 @@ class _SliverContainerState extends State<SliverContainer> {
 
   @override
   Widget build(BuildContext context) {
-    return getContentSliver(context, list);
+    return ListView(
+      children: [
+        Text('1'),
+        Text('2')
+      ],
+    );
+   // return getContentSliver(context, list);
+  }
+
+
+  @override
+  void dispose() {
+    animationController!.dispose();
+    super.dispose();
   }
 
   getContentSliver(BuildContext context, List<Subject>? list) {
@@ -125,7 +142,7 @@ class _SliverContainerState extends State<SliverContainer> {
               SliverOverlapInjector(handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context)),
               SliverList(delegate: SliverChildBuilderDelegate(((BuildContext context, int index) {
                 return getItemList(list, index);
-          }), childCount: list.length))
+          }), childCount: recommendList.length))
             ],
           );
         },
@@ -134,74 +151,37 @@ class _SliverContainerState extends State<SliverContainer> {
   }
 
   getItemList(List<Subject> list, int index) {
-    Subject item = list[index];
-    return Container(
-      height: 300,
-      color: Colors.white,
-      margin: const EdgeInsets.only(bottom: 10),
-      padding: const EdgeInsets.only(
-        left: 13,
-        right: 13,
-        top: 13,
-        bottom: 11
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Row(
-            children: const [
-              CircleAvatar(
-                radius: 15,
-                backgroundImage: AssetImage('${Constants.ASSETS_IMG}home.png'),
-                backgroundColor: Colors.white,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Text('test'),
-              ),
-              Expanded(
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: Icon(
-                      Icons.more_horiz,
-                      color: Colors.grey,
-                      size: 18,
-                    ),
-                  )
-              )
-            ],
-          ),
-          // Expanded(
-          //   child: Container(
-          //     child: ,
-          //   ),
-          // ),
-          Padding(
-            padding: const EdgeInsets.only(left: 15, right: 15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Image.asset(
-                  '${Constants.ASSETS_IMG}ic_vote.png',
-                  width: 25.0,
-                  height: 25.0,
-                ),
-                Image.asset(
-                  '${Constants.ASSETS_IMG}ic_vote.png',
-                  width: 20.0,
-                  height: 20.0,
-                ),
-                Image.asset(
-                  '${Constants.ASSETS_IMG}ic_vote.png',
-                  width: 25.0,
-                  height: 25.0,
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
+    //Subject item = list[index];
+    final count = 5;
+    final Animation<double> animation = Tween<double>(begin: 0.0, end: 1.0).animate(
+        CurvedAnimation(
+            parent: animationController!,
+            curve: Interval((1 / count) * index, 1.0, curve: Curves.fastOutSlowIn)));
+    animationController!.forward();
+    return RecommendListView(
+        callback: (){},
+    recommendEntity: recommendList[index],
+    animation: animation,
+    animationController: animationController,);
+    // return ListView.builder(
+    //     itemCount: 1,
+    //     padding: const EdgeInsets.only(top: 8),
+    //     scrollDirection: Axis.vertical,
+    //     itemBuilder: (BuildContext context, int index) {
+    //       final count = 1;
+    //       final Animation<double> animation = Tween<double>(begin: 0.0, end: 1.0).animate(
+    //           CurvedAnimation(
+    //               parent: animationController!,
+    //               curve: Interval((1 / count) * index, 1.0, curve: Curves.fastOutSlowIn)));
+    //       animationController!.forward();
+    //       return RecommendListView(
+    //         callback: (){},
+    //         recommendEntity: recommendList[index],
+    //         animation: animation,
+    //         animationController: animationController,
+    //       );
+    //     }
+    // );
   }
 
   getItemCenterImg(Subject item) {
