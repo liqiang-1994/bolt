@@ -307,7 +307,7 @@ class _MinePageWidgetState extends State<MinePageWidget> {
                       height: 25,
                     ),
                     Expanded(child: Container(
-                      padding: const EdgeInsets.only(left: 10),
+                      padding: const EdgeInsets.only(left: 15),
                       child: const Text('我的收藏',
                         style: TextStyle(color: Colors.black, fontSize: 18),),
                     ))
@@ -329,7 +329,7 @@ class _MinePageWidgetState extends State<MinePageWidget> {
                         height: 25,
                       ),
                       Expanded(child: Container(
-                        padding: const EdgeInsets.only(left: 10),
+                        padding: const EdgeInsets.only(left: 15),
                         child: const Text('我的赞',
                           style: TextStyle(color: Colors.black, fontSize: 18),),
                       ))
@@ -351,7 +351,7 @@ class _MinePageWidgetState extends State<MinePageWidget> {
                         height: 25,
                       ),
                       Expanded(child: Container(
-                        padding: const EdgeInsets.only(left: 10),
+                        padding: const EdgeInsets.only(left: 15),
                         child: const Text('关注的圈子',
                           style: TextStyle(color: Colors.black, fontSize: 18),),
                       ))
@@ -383,7 +383,7 @@ class _MinePageWidgetState extends State<MinePageWidget> {
                       height: 25,
                     ),
                     Expanded(child: Container(
-                      padding: const EdgeInsets.only(left: 10),
+                      padding: const EdgeInsets.only(left: 15),
                       child: const Text('反馈建议',
                         style: TextStyle(color: Colors.black, fontSize: 18),),
                     ))
@@ -401,7 +401,7 @@ class _MinePageWidgetState extends State<MinePageWidget> {
                   children: [
                     const Icon(Icons.drafts_outlined, size: 25, color: Colors.grey),
                     Expanded(child: Container(
-                      padding: const EdgeInsets.only(left: 10),
+                      padding: const EdgeInsets.only(left: 15),
                       child: const Text('草稿箱',
                         style: TextStyle(color: Colors.black, fontSize: 18),),
                     ))
@@ -419,7 +419,7 @@ class _MinePageWidgetState extends State<MinePageWidget> {
                   children: [
                     const Icon(Icons.share, size: 25, color: Colors.grey),
                     Expanded(child: Container(
-                      padding: const EdgeInsets.only(left: 10),
+                      padding: const EdgeInsets.only(left: 15),
                       child: const Text('分享',
                         style: TextStyle(color: Colors.black, fontSize: 18),),
                     ))
