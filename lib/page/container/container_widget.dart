@@ -1,5 +1,6 @@
 import 'package:bolt/page/circle/circle_page.dart';
 import 'package:bolt/page/home/home_page.dart';
+import 'package:bolt/page/mine/mine_page.dart';
 import 'package:bolt/page/personal/my_page.dart';
 import 'package:bolt/page/personal/personal_page.dart';
 import 'package:bolt/page/poems/poems_page.dart';
@@ -36,7 +37,8 @@ class _ContainerState extends State<ContainerWidget> {
       const HomePageWidget(),
       const PoemsPageWidget(),
       const CirclePageWidget(),
-      SearchPage()
+      const MinePageWidget()
+     // SearchPage()
       //const MyPage(),
       //const PersonalPageWidget()
     ];
