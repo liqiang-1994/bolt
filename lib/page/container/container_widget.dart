@@ -1,6 +1,9 @@
 import 'package:bolt/page/circle/circle_page.dart';
 import 'package:bolt/page/home/home_page.dart';
+import 'package:bolt/page/personal/my_page.dart';
+import 'package:bolt/page/personal/personal_page.dart';
 import 'package:bolt/page/poems/poems_page.dart';
+import 'package:bolt/page/search/search_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +36,9 @@ class _ContainerState extends State<ContainerWidget> {
       const HomePageWidget(),
       const PoemsPageWidget(),
       const CirclePageWidget(),
+      SearchPage()
+      //const MyPage(),
+      //const PersonalPageWidget()
     ];
     itemList = itemNames
           .map((item) => BottomNavigationBarItem(
@@ -53,7 +59,8 @@ class _ContainerState extends State<ContainerWidget> {
         children: [
           _getPagesWidget(0),
           _getPagesWidget(1),
-          _getPagesWidget(2)
+          _getPagesWidget(2),
+          _getPagesWidget(3)
         ],
       ),
       backgroundColor: const Color.fromARGB(255, 248, 248, 248),

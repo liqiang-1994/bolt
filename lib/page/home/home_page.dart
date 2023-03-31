@@ -110,13 +110,7 @@ class _SliverContainerState extends State<SliverContainer> with TickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Text('1'),
-        Text('2')
-      ],
-    );
-   // return getContentSliver(context, list);
+    return getContentSliver(context, list);
   }
 
 
@@ -140,9 +134,9 @@ class _SliverContainerState extends State<SliverContainer> with TickerProviderSt
             key: PageStorageKey<String>(widget.name),
             slivers: [
               SliverOverlapInjector(handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context)),
-              SliverList(delegate: SliverChildBuilderDelegate(((BuildContext context, int index) {
+              SliverFixedExtentList(delegate: SliverChildBuilderDelegate(((BuildContext context, int index) {
                 return getItemList(list, index);
-          }), childCount: recommendList.length))
+          }), childCount: recommendList.length), itemExtent: 300,)
             ],
           );
         },

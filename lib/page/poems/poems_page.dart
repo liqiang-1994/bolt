@@ -3,7 +3,7 @@ import 'package:bolt/page/home/poems_tab_bar_widget.dart';
 import 'package:bolt/widget/search_text_field_widget.dart';
 import 'package:flutter/material.dart';
 
-var _tabNameList = ['文集', '唐诗', '宋词', '元曲', '成语', '歇后语'];
+var _tabNameList = ['唐诗', '宋词', '文集', '元曲', '成语', '歇后语'];
 TabController? _tabController;
 List<Widget>? tabList;
 
