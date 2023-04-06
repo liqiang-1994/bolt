@@ -1,26 +1,31 @@
 import 'package:bolt/config/interceptor.dart';
+import 'package:bolt/page/container/camera_scan.dart';
 import 'package:bolt/page/splash/splash_widget.dart';
+import 'package:bolt/router.dart';
+import 'package:bolt/util/permission_util.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_unionad/flutter_unionad.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  bool initAd = false;
+  MyApp({super.key}) {
+    initDio();
+    _initRegister();
+  }
 
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        backgroundColor: Colors.white,
-        //colorScheme: ColorScheme
-      ),
-      home: const Scaffold(
-        body: SplashWidget(),
-      ),
+    return MaterialApp.router(
+      routerConfig: MyRouter.router,
     );
   }
 
@@ -29,91 +34,54 @@ class MyApp extends StatelessWidget {
     final List<Interceptor> interceptorList = <Interceptor>[];
     //Add authentication request headers
     interceptorList.add(AuthInterceptor());
+  }
 
+  void _initRegister() async {
+    initAd = await FlutterUnionad.register(
+      //穿山甲广告 Android appid 必填
+        androidAppId: "5381145",
+        //穿山甲广告 ios appid 必填
+        iosAppId: "5381145",
+        //使用TextureView控件播放视频,默认为SurfaceView,当有SurfaceView冲突的场景，可以使用TextureView 选填
+        useTextureView: false,
+        //appname 必填
+        appName: '诗友',
+        //"unionad_test",
+        //是否允许sdk展示通知栏提示 选填
+        allowShowNotify: true,
+        //是否在锁屏场景支持展示广告落地页 选填
+        allowShowPageWhenScreenLock: true,
+        //是否显示debug日志
+        debug: true,
+        //是否支持多进程，true支持 选填
+        supportMultiProcess: true,
+        //是否开启个人性推荐 选填
+        personalise: FlutterUnionadPersonalise.open,
+        //允许直接下载的网络状态集合 选填
+        directDownloadNetworkType: [
+          FlutterUnionadNetCode.NETWORK_STATE_2G,
+          FlutterUnionadNetCode.NETWORK_STATE_3G,
+          FlutterUnionadNetCode.NETWORK_STATE_4G,
+          FlutterUnionadNetCode.NETWORK_STATE_WIFI
+        ]
+    );
+    print("sdk初始化 $initAd");
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+    return MaterialApp(
+        theme: ThemeData(
+          backgroundColor: Colors.white,
+          //colorScheme: ColorScheme
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        home: const Scaffold(
+          body: SplashWidget(),
+        )
     );
   }
 }

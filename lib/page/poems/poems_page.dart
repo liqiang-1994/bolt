@@ -1,6 +1,7 @@
 import 'package:bolt/router.dart';
 import 'package:bolt/page/home/poems_tab_bar_widget.dart';
 import 'package:bolt/widget/search_text_field_widget.dart';
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 
 var _tabNameList = ['唐诗', '宋词', '文集', '元曲', '成语', '歇后语'];
@@ -110,6 +111,29 @@ Widget _getNestedScrollView(Widget tabBar) {
                 margin: const EdgeInsets.only(left: 5.0, right: 5.0),
               ),
             ),
+          ),
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 180,
+              width: MediaQuery.of(context).size.width,
+              child: Container(
+                padding: const EdgeInsets.only(top: 10, bottom: 10, left: 15, right: 15),
+                child: Swiper(
+                  itemBuilder: (BuildContext context, int index) {
+                    return ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(13)),
+                      child: Image.network('https://ts1.cn.mm.bing.net/th/id/R-C.f92b7b819318aef178ba5daf0bfa0d4b?rik=kantev7c2hrj2Q&riu=http%3a%2f%2fimage.guayunfan.com%2fattached%2fimage%2fupload%2f2016%2f3%2f2016031942217709.jpg&ehk=lCx6OxesDcER5KureJYQp9Pw9mtN3r4JIqGdSVn0ZNc%3d&risl=&pid=ImgRaw&r=0',
+                        fit: BoxFit.fill,
+                      )
+                    );
+                  },
+                  itemCount: 3,
+                  autoplay: true,
+                  pagination: SwiperPagination(),
+                  controller: SwiperController(),
+                ),
+              )
+            )
           ),
           SliverPersistentHeader(
               floating: true,
