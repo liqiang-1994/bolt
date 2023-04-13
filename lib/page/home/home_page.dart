@@ -6,6 +6,7 @@ import 'package:bolt/page/home/recommend_list_view.dart';
 import 'package:bolt/router.dart';
 import 'package:bolt/widget/search_text_field_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePageWidget extends StatelessWidget {
 
@@ -66,7 +67,9 @@ DefaultTabController getTabWeight() {
                     ),
                     actions: [
                       IconButton(
-                        onPressed: (){},
+                        onPressed: (){
+                          context.push('/publish');
+                        },
                         icon: const Icon(Icons.add,size: 40),
                         tooltip: '创作',
                         color: Colors.red,

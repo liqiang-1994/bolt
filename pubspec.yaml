@@ -45,8 +45,13 @@ dependencies:
   permission_handler: ^10.2.0
   get: ^4.6.5
   camera: ^0.10.3+2
-  fl_camera: ^3.1.3
   go_router: ^6.5.5
+  flutter_keyboard_visibility: ^5.4.0
+  fluttertoast: ^8.2.0
+  extended_text_field: ^11.0.1
+  image_picker: ^0.8.7+1
+  azlistview: ^2.0.0
+
 
 dev_dependencies:
   flutter_test:

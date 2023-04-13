@@ -1,9 +1,12 @@
 
 import 'package:bolt/main.dart';
 import 'package:bolt/model/subject_entity.dart';
+import 'package:bolt/page/container/camera_scan.dart';
 import 'package:bolt/page/container/container_widget.dart';
 import 'package:bolt/page/home/blog_conent_widget.dart';
 import 'package:bolt/page/home/blog_detail_page.dart';
+import 'package:bolt/page/publish/publish_at_page.dart';
+import 'package:bolt/page/publish/publish_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -45,7 +48,25 @@ class MyRouter {
           builder: (BuildContext context, GoRouterState state) {
             return BlogDetailWidget(subject: state.extra as Subject);
           },
-        )
+        ),
+        GoRoute(
+          path: '/camera',
+          builder: (BuildContext context, GoRouterState state) {
+            return CameraScanPage();
+          },
+        ),
+        GoRoute(
+          path: '/publish',
+          builder: (BuildContext context, GoRouterState state) {
+            return PublishPage();
+          },
+        ),
+        GoRoute(
+          path: '/publishAtUser',
+          builder: (BuildContext context, GoRouterState state) {
+            return PublishAtPage();
+          },
+        ),
       ]
   );
 }

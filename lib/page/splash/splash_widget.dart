@@ -15,7 +15,7 @@ class SplashWidget extends StatefulWidget {
 
 class _SplashWidget extends State<SplashWidget> {
 
-  bool showAd = true;
+  bool showAd = false;
   var container = const ContainerWidget();
 
   @override

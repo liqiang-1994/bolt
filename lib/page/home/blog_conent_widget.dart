@@ -37,6 +37,9 @@ Widget _buildAuthorImg(BuildContext context, Subject subject) {
     child: Row(
       children: [
         InkWell(
+          onTap: () {
+            context.push('/camera', extra: subject);
+          },
           child: Container(
             margin: const EdgeInsets.only(right: 5),
             child: Container(
