@@ -5,6 +5,11 @@ import 'package:bolt/page/container/camera_scan.dart';
 import 'package:bolt/page/container/container_widget.dart';
 import 'package:bolt/page/home/blog_conent_widget.dart';
 import 'package:bolt/page/home/blog_detail_page.dart';
+import 'package:bolt/page/chat/chat_page.dart';
+import 'package:bolt/page/mine/feedback_page.dart';
+import 'package:bolt/page/personal/my_page.dart';
+import 'package:bolt/page/personal/my_personal_page.dart';
+import 'package:bolt/page/personal/personal_page.dart';
 import 'package:bolt/page/publish/publish_at_page.dart';
 import 'package:bolt/page/publish/publish_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -67,6 +72,24 @@ class MyRouter {
             return PublishAtPage();
           },
         ),
+        GoRoute(
+          path: "/chat",
+          builder: (BuildContext context, GoRouterState state) {
+            return ChatPage();
+          }
+        ),
+        GoRoute(
+            path: "/feedback",
+            builder: (BuildContext context, GoRouterState state) {
+              return FeedbackPage();
+            }
+        ),
+        GoRoute(
+            path: "/myPersonalPage",
+            builder: (BuildContext context, GoRouterState state) {
+              return MyPersonalPage();
+            }
+        )
       ]
   );
 }

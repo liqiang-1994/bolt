@@ -1,5 +1,6 @@
 import 'package:bolt/constant/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class MinePageWidget extends StatefulWidget {
   const MinePageWidget({Key? key}) : super(key: key);
@@ -86,7 +87,9 @@ class _MinePageWidgetState extends State<MinePageWidget> {
                         width: 30,
                         height: 33,
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        context.push('/chat');
+                      },
                     )
                   ],
                 ),
@@ -121,7 +124,7 @@ class _MinePageWidgetState extends State<MinePageWidget> {
                       children: [
                         Row(
                           children: [
-                            const Center(
+                            Center(
                               child: Padding(
                                 padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
                                 child: Text('小提琴与厨师',
@@ -150,7 +153,9 @@ class _MinePageWidgetState extends State<MinePageWidget> {
                   ],
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                context.push("/myPersonalPage");
+              },
             ),
           ),
           Container(
@@ -382,11 +387,14 @@ class _MinePageWidgetState extends State<MinePageWidget> {
                       width: 25,
                       height: 25,
                     ),
-                    Expanded(child: Container(
-                      padding: const EdgeInsets.only(left: 15),
-                      child: const Text('反馈建议',
-                        style: TextStyle(color: Colors.black, fontSize: 18),),
-                    ))
+                    InkWell(
+                      child: Container(
+                          padding: const EdgeInsets.only(left: 15),
+                          child: const Text('反馈建议', style: TextStyle(color: Colors.black, fontSize: 18))),
+                      onTap: () {
+                        context.push("/feedback");
+                      },
+                    )
                   ],
                 ),
               ),

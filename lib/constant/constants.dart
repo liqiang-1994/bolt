@@ -1,5 +1,4 @@
 
-import 'package:flustars/flustars.dart';
 import 'package:flutter/foundation.dart';
 
 class Constants {
