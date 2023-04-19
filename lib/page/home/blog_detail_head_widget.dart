@@ -4,9 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BlogDetailHeadWidget extends StatefulWidget {
-  BlogDetailHeadWidget(this.avatarUrl, {Key? key}) : super(key: key);
+  BlogDetailHeadWidget(this.avatarUrl, {Key? key, required this.opacity}) : super(key: key);
 
   String avatarUrl;
+  double opacity;
 
   @override
   State<BlogDetailHeadWidget> createState() => _BlogDetailHeadWidgetState();
@@ -44,12 +45,16 @@ class _BlogDetailHeadWidgetState extends State<BlogDetailHeadWidget> {
           child: Center(
             child: Stack(
               children: [
-                const Align(
+                Align(
                   alignment: Alignment.center,
-                  child: Text(
-                    '正文',
-                    style: TextStyle(fontSize: 16, color: Colors.black),
-                  ),
+                  child: Opacity(
+                      opacity: widget.opacity,
+                      child:  CircleAvatar(
+                          radius: 20,
+                          backgroundImage: NetworkImage(
+                              "https://pic2.zhimg.com/v2-a88cd7618933272ca681f86398e6240d_xll.jpg")
+                      ),
+                  )
                 ),
                 Align(
                   alignment: Alignment.centerRight,

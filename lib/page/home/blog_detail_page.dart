@@ -24,6 +24,7 @@ class _BlogDetailWidgetState extends State<BlogDetailWidget> with SingleTickerPr
   List<CommentModel> commentList = [];
   bool commentLoding = false;
   bool commentHasMore = true;
+  double opacity = 0.0;
   int commentCurrPage = 1;
 
   _BlogDetailWidgetState({required this.subject});
@@ -32,6 +33,15 @@ class _BlogDetailWidgetState extends State<BlogDetailWidget> with SingleTickerPr
   void initState() {
     super.initState();
     _tabController = TabController(length: _tabList.length, vsync: this);
+    scrollController.addListener(() {
+      setState(() {
+        if (scrollController.offset > 50) {
+          opacity = 1.0;
+        } else {
+          opacity = 0.0;
+        }
+      });
+    });
   }
 
   @override
@@ -44,13 +54,12 @@ class _BlogDetailWidgetState extends State<BlogDetailWidget> with SingleTickerPr
     return Scaffold(
       body: SafeArea(
         child: Scaffold(
-          // appBar: AppBar(
-          //   leading: Icon(Icons.arrow_back)
-          // ),
             body: Column(
                 children: [
-                  Container(color: Colors.white, child: BlogDetailHeadWidget('ceff')),
-                  Expanded(child: NestedScrollView(headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+                  Container(color: Colors.white, child: BlogDetailHeadWidget('ceff', opacity: opacity)),
+                  Expanded(child: NestedScrollView(
+                    controller: scrollController,
+                    headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
                     return [
                       SliverToBoxAdapter(
                           child: Container(height: 8, color: const Color(0xffEFEFEF))),

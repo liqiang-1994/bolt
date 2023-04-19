@@ -7,6 +7,7 @@ import 'package:bolt/page/home/blog_conent_widget.dart';
 import 'package:bolt/page/home/blog_detail_page.dart';
 import 'package:bolt/page/chat/chat_page.dart';
 import 'package:bolt/page/mine/feedback_page.dart';
+import 'package:bolt/page/personal/home_page.dart';
 import 'package:bolt/page/personal/my_page.dart';
 import 'package:bolt/page/personal/my_personal_page.dart';
 import 'package:bolt/page/personal/personal_page.dart';
